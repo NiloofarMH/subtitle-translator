@@ -6,7 +6,7 @@ export const translateChunks = async (
   texts: string[],
   direction: TranslationDirection
 ): Promise<string[]> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY || "" });
   
   const sourceLang = direction === TranslationDirection.EN_TO_FA ? 'English' : 'Persian';
   const targetLang = direction === TranslationDirection.EN_TO_FA ? 'Persian' : 'English';
