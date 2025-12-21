@@ -6,7 +6,7 @@ export const translateChunks = async (
   texts: string[],
   direction: TranslationDirection
 ): Promise<string[]> => {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY || "" });
+  const ai = new GoogleGenAI(import.meta.env.VITE_GOOGLE_API_KEY || "");
   
   const sourceLang = direction === TranslationDirection.EN_TO_FA ? 'English' : 'Persian';
   const targetLang = direction === TranslationDirection.EN_TO_FA ? 'Persian' : 'English';
@@ -25,7 +25,7 @@ export const translateChunks = async (
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash-latest",
+      model: "gemini-1.5-flash",
       contents: `Translate the following ${texts.length} lines of text. Return them as a JSON array of strings in the exact same order:\n\n${JSON.stringify(texts)}`,
       config: {
         systemInstruction,
