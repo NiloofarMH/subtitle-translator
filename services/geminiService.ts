@@ -25,7 +25,7 @@ export const translateChunks = async (
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash-latest",
       contents: `Translate the following ${texts.length} lines of text. Return them as a JSON array of strings in the exact same order:\n\n${JSON.stringify(texts)}`,
       config: {
         systemInstruction,
