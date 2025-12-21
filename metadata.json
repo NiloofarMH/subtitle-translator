@@ -1,0 +1,6 @@
+
+{
+  "name": "Subtitles Translator",
+  "description": "A modern, high-performance subtitle translator using Gemini AI. Supports English to Persian and Persian to English translation while preserving timecodes and formatting.",
+  "requestFramePermissions": []
+}
