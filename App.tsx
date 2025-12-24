@@ -78,19 +78,28 @@ const App: React.FC = () => {
   const handleDownload = () => {
     if (!status.result || !file) return;
 
-    const blob = new Blob([status.result], { type: 'text/plain' });
+    // اضافه کردن BOM برای پشتیبانی بهتر از زبان فارسی در ویندوز
+    const BOM = "\uFEFF";
+    const blob = new Blob([BOM + status.result], { type: 'application/x-subrip;charset=utf-8' });
+    
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     
-    // Suggest a name: original_name_translated.srt
     const originalName = file.name.replace(/\.[^/.]+$/, "");
     a.href = url;
-    a.download = `${originalName}_translated_${direction}.srt`;
+    a.download = ${originalName}_translated_${direction}.srt;
+    
+    // این بخش برای اندروید حیاتی است
+    a.style.display = 'none';
     document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
+    
+    // ایجاد تاخیر بسیار کم برای اطمینان از رندر شدن لینک در DOM
+    setTimeout(() => {
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 100);
+};
 
   const toggleDirection = () => {
     setDirection(prev => 
