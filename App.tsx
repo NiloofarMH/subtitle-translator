@@ -87,7 +87,7 @@ const App: React.FC = () => {
     
     const originalName = file.name.replace(/\.[^/.]+$/, "");
     a.href = url;
-    a.download = ${originalName}_translated_${direction}.srt;
+    a.download = `${originalName}_translated_${direction}.srt`;
     
     // این بخش برای اندروید حیاتی است
     a.style.display = 'none';
